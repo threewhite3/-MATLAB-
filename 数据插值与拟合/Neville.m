@@ -1,0 +1,31 @@
+function f=Neville(x,y,x0)
+%用Neville算法求已知数据点的有理分式形式的插值分式
+%已知数据点的x坐标:x
+%已知数据点的y坐标:y
+%插值点的x坐标:x0
+%求得的有理分式形式的插值分式或在x0处的插值:f
+syms t;
+if(length(x)==length(y))
+    n=length(x);
+    elsed
+    disp('x和y的维数不相等!');
+    return;
+end
+y1(1:n)=t;
+for(i=1:n-1)
+    for(j=i+1:n)
+        if(j==2)
+            y1(j)=y(j)+(y(j)-y(j-1))/((t-x(j-1))/(t-x(j)))*(1-(y(j)-y(j-1))/y(j));
+        else
+            y1(j)=y(j)+(y(j)-y(j-1))/((t-x(j-i))/(t-x(j)))*(1-(y(j)-y(j-1))/(y(j)-y(j-2)));
+        end
+    end
+    y=y1;
+    if(i==n-1)
+        if(nargin==3)
+            f=subs(y(n-1),'t',x0);
+        else
+            f=vpa(y(n-1),6);
+        end
+    end
+end

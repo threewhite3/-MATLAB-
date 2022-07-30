@@ -1,0 +1,14 @@
+clear;
+clc;
+[X,Y]=meshgrid(-3:3);
+z=sin(X)+sin(Y);
+z1=griddata(X,Y,z,-0.5,1);
+fprintf('z1=%f\n',z1);
+z2=griddata(X,Y,z,-0.5,1,'linear');
+fprintf('z2=%f\n',z2);
+z3=griddata(X,Y,z,-0.5,1,'cubic');
+fprintf('z3=%f\n',z3);
+z4=griddata(X,Y,z,-0.5,1,'nearest');
+fprintf('z4=%f\n',z4);
+z5=griddata(X,Y,z,-0.5,1,'v4');
+fprintf('z5=%f\n',z5);

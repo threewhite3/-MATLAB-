@@ -1,0 +1,16 @@
+clear;
+clc;
+A=0.5;
+it0=inline('sin(pi*x)','x');
+bx0=inline('0');
+bxf=inline('0');
+xf=2;
+M=25;
+T=0.1;
+N=100;
+[u,x,t]=Grank_Nicholson(A,xf,T,it0,bx0,bxf,M,N);
+clf;
+mesh(t,x,u);
+xlabel('t');
+ylabel('x');
+zlabel('u');
